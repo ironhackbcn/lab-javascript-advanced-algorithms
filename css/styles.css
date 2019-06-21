@@ -1,0 +1,44 @@
+/*Here beguin css to javascript */
+
+html {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 10px;
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.contents-stack {
+  width: 100%;
+  height: auto;
+}
+.contents-queue{
+    display:flex;
+    flex-flow: row;
+}
+.stack,
+.head,
+.tail,.queue {
+  width: 30%;
+  padding: 2%;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+.head {
+  visibility: hidden;
+  color: red;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tail {
+  visibility: hidden;
+  color: red;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

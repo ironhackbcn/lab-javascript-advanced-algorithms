@@ -26,5 +26,8 @@ class QueueDataStructure {
       return "Queue Overflow";
     }
   }
-  dequeue() {}
+  dequeue() {
+    if (!this.isEmpty()) {return this.queueControl.pop();}
+    else return 'Queue Underflow';
+  }
 }
