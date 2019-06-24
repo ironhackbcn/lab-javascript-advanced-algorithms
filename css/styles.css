@@ -1,0 +1,105 @@
+/*Here beguin css to javascript */
+
+html {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 10px;
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.contents-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contents-queue {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+}
+
+.stack,
+.head,
+.tail,
+.queue {
+  width: 20%;
+  padding: 2% 8%;
+  background-color: #ebebeb;
+  border: 1px solid #000;
+  text-align: center;
+}
+.queue {
+  padding: 10% 10%;
+}
+
+#queue {
+  padding: 1% 30%;
+  text-align: left;
+  font-size: 1rem;
+  text-justify: left;
+  color: #000;
+  line-height:100%;
+}
+
+.head,
+.tail {
+  visibility: hidden;
+  color: #e6908d;
+  border-color: #e6908d;
+  background-color: #e7adaa;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 100%;
+}
+.head {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tail {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+input,
+button {
+  font-size: 1rem;
+  width: 20%;
+  padding: 2%;
+  margin: 1% 0;
+  border-radius: 5px;
+  border: 1px solid#000;
+  font-weight: 600;
+  color: black;
+}
+
+#queuehead,#queuetail{
+  padding:2%;
+}
+
+#queuehead {
+  border-top-left-radius:5px;
+  border-bottom-left-radius:5px;
+}
+
+#queuetail {
+  border-top-right-radius:5px;
+  border-bottom-right-radius:5px;
+}
+.red {
+  color: white;
+  background-color: #e6908d;
+}
+.blue {
+  color: white;
+  background-color: #3378b5;
+}
+
+
