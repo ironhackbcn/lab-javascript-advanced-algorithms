@@ -13,7 +13,7 @@ function Init() {
   let inputStack = document.createElement("input");
   inputStack.setAttribute("class", "black");
   inputStack.setAttribute("type", "text");
-  inputStack.setAttribute("placeholder", "Add element to the Stack...");
+  inputStack.setAttribute("placeholder", "Add element...");
   inputStack.id = "stack";
   divContentsStack.appendChild(inputStack);
   let buttonSAdd = document.createElement("button");
@@ -48,20 +48,6 @@ function Init() {
   h2Queue.innerHTML = "Queue";
   divContentsQueue.appendChild(h2Queue);
 
-  let inputQueue = document.createElement("input");
-  inputQueue.setAttribute("class", "black");
-  inputQueue.setAttribute("type", "text");
-  inputQueue.setAttribute("placeholder", "Add element to the Queue...");
-  inputQueue.id = "queue";
-  divContentsQueue.appendChild(inputQueue);
-  let buttonQAdd = document.createElement("button");
-  let buttonQTake = document.createElement("button");
-  buttonQAdd.setAttribute("class", "blue");
-  buttonQTake.setAttribute("class", "red");
-  buttonQAdd.innerHTML = "ADD";
-  buttonQTake.innerHTML = "TAKE";
-  divContentsQueue.appendChild(buttonQAdd);
-  divContentsQueue.appendChild(buttonQTake);
   let divContentsQueueHead = document.createElement("div");
   divContentsQueueHead.id = "queuehead";
   divContentsQueueHead.setAttribute("class", "head");
@@ -76,6 +62,22 @@ function Init() {
   divContentsQueueTail.id = "queuetail";
   divContentsQueueTail.setAttribute("class", "tail");
   divContentsQueue.appendChild(divContentsQueueTail);
+
+  let inputQueue = document.createElement("input");
+  inputQueue.setAttribute("class", "black");
+  inputQueue.setAttribute("type", "text");
+  inputQueue.setAttribute("placeholder", "Add element...");
+
+  inputQueue.id = "queue";
+  divContentsQueue.appendChild(inputQueue);
+  let buttonQAdd = document.createElement("button");
+  let buttonQTake = document.createElement("button");
+  buttonQAdd.setAttribute("class", "blue");
+  buttonQTake.setAttribute("class", "red");
+  buttonQAdd.innerHTML = "ADD";
+  buttonQTake.innerHTML = "TAKE";
+  divContentsQueue.appendChild(buttonQAdd);
+  divContentsQueue.appendChild(buttonQTake);
 
   //Programming Buttons
   buttonSAdd.addEventListener("click", addingToStack);
@@ -93,7 +95,7 @@ function addingToStack() {
       document.getElementById("stackhead").innerHTML = "STACK OVERFLOW!!!";
       document.getElementById("stackhead").style.visibility = "visible";
     } else {
-      cleaningStackScreen();
+      cleaningStackScreen(stack, "s");
       showingContentsStack();
     }
   }
@@ -103,16 +105,11 @@ function addingToStack() {
 }
 
 function takingToStack() {
-  let stackTail;
-  let lostInformation;
-  let counterPosition = 10;
-  if ((lostInformation = stack.pop() === "Stack Underflow")) {
-    stackTail = document.getElementById("stacktail");
-    stackTail.innerHTML = "STACK UNDERFLOW!!!";
-    stackTail.style.visibility = "visible";
+  if (stack.pop() === "Stack Underflow") {
+    document.getElementById("stacktail").innerHTML = "STACK UNDERFLOW!!!";
+    document.getElementById("stacktail").style.visibility = "visible";
   } else {
-    console.log(lostInformation);
-    cleaningStackScreen();
+    cleaningStackScreen(stack, "s");
     showingContentsStack();
   }
   document.getElementById("stackhead").style.visibility = "hidden";
@@ -122,51 +119,37 @@ function addingToQueue() {
   {
     let input = document.getElementById("queue");
     console.log(input);
-    let queueTail;
-    let queueHead;
-    let divQueue;
     if (input.value != "") {
       if (queue.enqueue(input.value) === "Queue Overflow") {
-        queueHead = document.getElementById("queuehead");
-        queueHead.innerHTML = "QUEUE OVERFLOW!!!";
-        queueHead.style.visibility = "visible";
+        document.getElementById("queuehead").innerHTML = "QUEUE OVERFLOW!!!";
+        document.getElementById("queuehead").style.visibility = "visible";
       } else {
-        divQueue = document.getElementsByClassName(
-          `q${queue.queueControl.length}`
-        )[0];
-        divQueue.innerHTML = input.value;
-        queueTail = document.getElementById("queuetail");
-        queueTail.style.visibility = "hidden";
+        cleaningStackScreen(queue, "q");
+        showingContentsQueue();
+        document.getElementById("queuetail").style.visibility = "hidden";
       }
     }
   }
 }
-function takingToQueue() {
-  let queueHead;
-  let queueTail;
-  let divQueue;
 
+function takingToQueue() {
   if (queue.dequeue() === "Queue Underflow") {
-    queueTail = document.getElementById("queuetail");
-    queueTail.innerHTML = "QUEUE UNDERFLOW!!!";
-    queueTail.style.visibility = "visible";
+    document.getElementById("queuetail").innerHTML = "QUEUE UNDERFLOW!!!";
+    document.getElementById("queuetail").style.visibility = "visible";
   } else {
-    divQueue = document.getElementsByClassName(
-      `q${queue.queueControl.length + 1}`
-    )[0];
-    divQueue.innerHTML = "";
-    divQueue.style.backgroundColor = "#ebebeb";
-    queueHead = document.getElementById("queuehead");
-    queueHead.style.visibility = "hidden";
+    cleaningStackScreen(queue, "q");
+    showingContentsQueue();
+    document.getElementById("queuehead").style.visibility = "hidden";
   }
 }
 
-function cleaningStackScreen() {
-  for (let i = 0; i < stack.MAX_SIZE; i++) {
-    document.getElementsByClassName(`s${i + 1}`)[0].innerHTML = "";
-    document.getElementsByClassName(`s${i + 1}`)[0].style.background =
+function cleaningStackScreen(stackOrQueue, letter) {
+  for (let i = 0; i < stackOrQueue.MAX_SIZE; i++) {
+    document.getElementsByClassName(`${letter}${i + 1}`)[0].innerHTML = "";
+    document.getElementsByClassName(`${letter}${i + 1}`)[0].style.background =
       "#ebebeb";
-    document.getElementsByClassName(`s${i + 1}`)[0].style.color = "#ebebeb";
+    document.getElementsByClassName(`${letter}${i + 1}`)[0].style.color =
+      "#ebebeb";
   }
 }
 
@@ -182,5 +165,20 @@ function showingContentsStack() {
       `s${counterPosition}`
     )[0].style.backgroundColor = "#3378b5";
     counterPosition--;
+  });
+}
+
+function showingContentsQueue() {
+  let counterPosition = 1;
+  queue.queueControl.forEach(function(positionQueue) {
+    document.getElementsByClassName(
+      `q${counterPosition}`
+    )[0].innerHTML = positionQueue;
+    document.getElementsByClassName(`q${counterPosition}`)[0].style.color =
+      "#ffffff";
+    document.getElementsByClassName(
+      `q${counterPosition}`
+    )[0].style.backgroundColor = "#3378b5";
+    counterPosition++;
   });
 }
