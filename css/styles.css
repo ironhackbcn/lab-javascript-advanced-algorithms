@@ -15,30 +15,81 @@ html {
 
 .contents-stack {
   width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: column;
 }
-.contents-queue{
-    display:flex;
-    flex-flow: row;
+
+.contents-queue {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
 .stack,
 .head,
-.tail,.queue {
+.tail,
+.queue {
   width: 30%;
   padding: 2%;
-  background-color: #fff;
+  background-color: #ebebeb;
   border: 1px solid #000;
+  text-align: center;
+}
+
+.head,
+.tail {
+  visibility: hidden;
+  color: #e6908d;
+   border-color: #e6908d;
+  background-color: #e7adaa;
+  font-size: 3rem;
 }
 .head {
-  visibility: hidden;
-  color: red;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.tail {
-  visibility: hidden;
-  color: red;
+.tail{
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+input,
+button {
+  font-size: 2rem;
+  width: 30%;
+  padding: 2%;
+  margin: 1% 0;
+  border-radius: 5px;
+  border: 1px solid#000;
+  font-weight: 600;
+  color: black;
+}
+
+.black {
+  color: black;
+}
+
+.red {
+  color: white;
+  background-color: #e6908d;
+}
+.blue {
+  color: white;
+  background-color: #3378b5;
+}
+
+div {
+  margin-top: 0.25%;
+  font-weight: 600;
+}
+
+.colors {
+  color: #ebebeb;
+  color: #f0d8d8;
+  color: #ffffff;
+  color: #3378b5;
+  color: #e6908d;
+  color: #e7adaa;
+  color: #757677;
 }
